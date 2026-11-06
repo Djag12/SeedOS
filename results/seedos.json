@@ -1,0 +1,18 @@
+{
+  "emulator": "QEMU TCG",
+  "mode": "x86-64 long mode",
+  "ring3_restarts": 1000,
+  "ipc_round_trips": 100002,
+  "invalid_capability_denials": 101002,
+  "kernel_write_page_faults": 500,
+  "invalid_opcode_faults": 500,
+  "whole_emulator_wall_seconds": 3.97952152299996,
+  "ipc_throughput_measured": false,
+  "user_space_serial_driver": true,
+  "isolated_processes": 3,
+  "isolated_drivers": [
+    "UART",
+    "CMOS RTC"
+  ],
+  "cross_driver_denials": 1000
+}

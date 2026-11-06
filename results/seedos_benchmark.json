@@ -1,0 +1,20 @@
+{
+  "accelerator": "tcg",
+  "qemu_version": "QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)",
+  "host": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "runs": 1,
+  "processes": 3,
+  "timed_ipc_participants": 2,
+  "round_trips": 1000000,
+  "elapsed_seconds": 27.002435499,
+  "elapsed_seconds_samples": [
+    27.002435499
+  ],
+  "ipc_round_trips_per_second": 37033.69646182596,
+  "includes_driver_receive_syscall": false,
+  "entry_exit": "SYSCALL/SYSRET",
+  "kernel_address_space_switch_per_direction": true,
+  "timing": "median host serial workload markers; includes marker overhead",
+  "target_500k_met": false,
+  "exact_kvm_target_verified": false
+}

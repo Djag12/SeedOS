@@ -1,0 +1,33 @@
+name: SeedOS hardware benchmark
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clear bundled measurements from this disposable checkout
+        run: rm -f results/seedos_benchmark.json results/seedos_benchmark.log results/seedos.json results/seedos.log
+      - name: Check runner for x86 KVM
+        run: |
+          test "$(uname -m)" = x86_64
+          test -c /dev/kvm || { echo "This runner does not expose /dev/kvm"; exit 1; }
+          sudo setfacl -m "u:$(id -un):rw" /dev/kvm
+      - name: Install emulator
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y --no-install-recommends qemu-system-x86 seabios
+      - name: Run driver recovery test and five KVM boots
+        run: sh seedos/verify-kvm.sh
+      - name: Save fresh measurements
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seedos-run
+          path: |
+            results/seedos_benchmark.json
+            results/seedos_benchmark.log
+            results/seedos.json
+            results/seedos.log

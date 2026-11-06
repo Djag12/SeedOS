@@ -1,0 +1,4 @@
+SeedOS64 boot
+WORKLOAD START
+
+PASS x86_64 processes=3 restarts=0 ipc_round_trips=1000000 denied_caps=0 page_faults=0 invalid_opcodes=0 serial_driver_writes=0 clock_driver_reads=0
