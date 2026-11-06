@@ -1,7 +1,7 @@
 # SeedOS
 
-**Original project date (from memory):** March 2026  
-**Published on GitHub:** November 6, 2026
+**First published on my previous account (from memory):** March 2026  
+**Republished under Djag12:** November 6, 2026
 
 SeedOS boots from a BIOS disk image and runs a client, a serial driver and a clock driver in separate address spaces. The client holds a capability for each endpoint. A call enters the kernel, switches to the receiving driver and returns a reply to the client.
 
