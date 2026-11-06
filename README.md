@@ -1,5 +1,8 @@
 # SeedOS
 
+**Original project date (from memory):** March 2026  
+**Published on GitHub:** November 6, 2026
+
 SeedOS boots from a BIOS disk image and runs a client, a serial driver and a clock driver in separate address spaces. The client holds a capability for each endpoint. A call enters the kernel, switches to the receiving driver and returns a reply to the client.
 
 ## Boot and test
@@ -13,7 +16,3 @@ The recovery test deliberately crashes each driver 500 times. The kernel restart
 Run `make benchmark` for the emulator timing. The saved software emulation run completed one million verified round trips at 37,034 per second. To test the 500,000 target on hardware, run `make hardware` on a Linux host with access to /dev/kvm. That target still needs a verified hardware result.
 
 Developed with AI assistance.
-
-## Project history
-
-Original project date (from memory): March 2026. This repository was published on November 6, 2026.
