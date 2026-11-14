@@ -1,0 +1,32 @@
+name: Document reconstructed project date
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/reconstruct-date.yml]
+permissions:
+  contents: write
+jobs:
+  reconstruct:
+    if: github.event.deleted == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record labeled historical snapshot
+        env:
+          GIT_AUTHOR_NAME: Djag12
+          GIT_AUTHOR_EMAIL: 132848963+Djag12@users.noreply.github.com
+          GIT_COMMITTER_NAME: Djag12
+          GIT_COMMITTER_EMAIL: 132848963+Djag12@users.noreply.github.com
+          GIT_AUTHOR_DATE: "2026-03-01T12:00:00Z"
+          GIT_COMMITTER_DATE: "2026-03-01T12:00:00Z"
+          RECONSTRUCTED_README: "# SeedOS\n\n**First published on my previous account (from memory):** March 2026  \n**Republished under Djag12:** November 6, 2026\n\nSeedOS boots from a BIOS disk image and runs a client, a serial driver and a clock driver in separate address spaces. The client holds a capability for each endpoint. A call enters the kernel, switches to the receiving driver and returns a reply to the client.\n\n## Boot and test\n\nUse x86 Linux or Ubuntu in WSL on an x86 Windows machine. Install GCC, GNU binutils, Make, Python 3, QEMU for x86 and SeaBIOS. Run `make test` to build the image, boot it and check the serial output.\n\nThe recovery test deliberately crashes each driver 500 times. The kernel restarts the driver and preserves the pending request. The saved log in `results/seedos.log` records 1,000 recoveries and 100,002 completed client round trips.\n\n## Measure IPC\n\nRun `make benchmark` for the emulator timing. The saved software emulation run completed one million verified round trips at 37,034 per second. To test the 500,000 target on hardware, run `make hardware` on a Linux host with access to /dev/kvm. That target still needs a verified hardware result.\n\nDeveloped with AI assistance.\n\n## Reconstructed history\n\nThis snapshot uses 2026-03-01 as its author and committer date based on my recollection of the original project. Only the month is remembered; the first day is an approximate placeholder. The original Git history was unavailable. This reconstruction was created on November 14, 2026, and does not recover the original individual commits.\n"
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          Path('README.md').write_text(os.environ['RECONSTRUCTED_README'])
+          PY
+          git rm .github/workflows/reconstruct-date.yml
+          git add README.md
+          git commit -m "Reconstructed historical snapshot dated 2026-03-01; created November 14, 2026"
+          git push origin HEAD:main
