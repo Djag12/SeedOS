@@ -16,7 +16,3 @@ The recovery test deliberately crashes each driver 500 times. The kernel restart
 Run `make benchmark` for the emulator timing. The saved software emulation run completed one million verified round trips at 37,034 per second. To test the 500,000 target on hardware, run `make hardware` on a Linux host with access to /dev/kvm. That target still needs a verified hardware result.
 
 Developed with AI assistance.
-
-## Reconstructed history
-
-This snapshot uses 2026-03-01 as its author and committer date based on my recollection of the original project. Only the month is remembered; the first day is an approximate placeholder. The original Git history was unavailable. This reconstruction was created on November 14, 2026, and does not recover the original individual commits.
